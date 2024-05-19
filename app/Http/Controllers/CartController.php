@@ -17,9 +17,23 @@ class CartController extends Controller
         $producto->name,
         1,
         $producto->price,
-        ["image"=>$producto]
+        ["image"=>$producto ->image]
     );
 
     return redirect()->back()->with("success","Item agregado:  ".$producto->name);
+    }
+
+    public function checkout(){
+        return view ('front.cart.checkout');
+    }
+
+    public function removeItem( Request $request){
+        Cart::remove ($request->rowId);
+        return redirect()->back()->with("success","Item eliminado");
+    }
+
+    public function clear(){
+        Cart::destroy();
+        return redirect()->back()->with("success","Carrito Vacío");
     }
 }
