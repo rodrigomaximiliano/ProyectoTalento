@@ -15,9 +15,9 @@
                     <div class="card-footer">
                         <form action="{{route('add')}}" method="post">
                         @csrf
-                        <input type="hidden" name="id" value{{$item->id}}>
+                        <input type="hidden" name="id" value="{{$item->id}}">
                         <input type="submit" name="btn" class="btn btn-success w-100" value="Agregar">
-	       </form>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -25,4 +25,5 @@
     </div>
 </div>
 @endsection
+
 
