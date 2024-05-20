@@ -7,21 +7,25 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('Proyecto Talento') }}Talento Store</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-custom">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <i class="fas fa-code"></i>
+                    TalentoStore
+                    
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -34,8 +38,20 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+                    
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center" href="{{ route('checkout') }}">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="ms-1">Carrito</span>
+                                <span class="badge bg-danger ms-1">{{ \Cart::count() }}</span>
+                            </a>
+                        </li>
+                        <ul class="navbar-nav ms-auto">
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('productos') }}">Productos</a>
+                        </li>
+                    <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -78,3 +94,13 @@
     </div>
 </body>
 </html>
+<style>
+    .navbar-custom {
+    background-color: #53c685;
+    }
+    
+    body {
+        background-color: #d9f2e4;
+    }
+
+</style>
