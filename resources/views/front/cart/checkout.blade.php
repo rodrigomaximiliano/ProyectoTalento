@@ -8,39 +8,40 @@
                 @if(Cart::count())
                     <table class="table table-striped">
                         <thead>
-                            <th>ID</th>
                             <th>NOMBRE</th>
                             <th>CANTIDAD</th>
                             <th>PRECIO UNITARIO</th>
-                            <th>IMPORTE TOTAL</th>
+                            <th>PRECIO TOTAL</th>
                         </thead>
                         <tbody>
                             @foreach (Cart::content() as $item)
                             <tr class="align-middle">
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->qty}}</td>
-                                <td>{{number_format($item->price,2)}}</td>
-                                <td>{{number_format($item->qty*$item->price,2)}}</td>
+                                <td>${{number_format($item->price,2)}}</td>
+                                <td>${{number_format($item->qty*$item->price,2)}}</td>
                                 <td>
                                     <form action="{{route('removeitem')}}" method= "post">
                                         @csrf
                                         <input type="hidden" name="rowId" value="{{$item->rowId}}">
-                                        <input type="submit" name="btn" class="btn btn-danger w-100" value="Quitar">
+                                        <button type="submit" name="btn" class="btn btn-danger w-100">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
                             @endforeach
-                            <tr class="fw-bolder">
-                                <td colspan="3"></td>
-                                <td class="text-end">{{Cart::total()}}</td>
-                                <td></td>
-                            </tr>
+                           
                         </tbody>
                     </table>
-                    <a href="{{route('clear')}}" class="text-center"> Vaciar Carrito </a>
+                    <div class="text-center"> 
+                        <a href="{{route('clear')}}" class="btn btn-warning"> Vaciar Carrito </a>
+                    </div>
 
                             @else
-                    <a href="/" class="text-center"> Agregar producto </a>
+                            <div class="text-center"> 
+                                <a href="{{route('productos')}}" class="btn btn-success">  Agregar Productos <i class="fas fa-shopping-basket"></i> </a>
+                            </div>
                 @endif
             </div>
         </div>
